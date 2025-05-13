@@ -1,0 +1,4 @@
+This is the final lap a driver completes before returning to the pits. 
+The purpose of this lap differs between qualifying and race scenarios. 
+In qualifying and free practice sessions, the in-lap is a slow, controlled affair. 
+Having already set their time, there's no need to push the car further

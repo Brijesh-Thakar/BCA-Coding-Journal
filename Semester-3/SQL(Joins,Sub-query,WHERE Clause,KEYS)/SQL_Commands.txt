@@ -1,0 +1,430 @@
+SQL> create table Department_61
+  2  (
+  3    deptno number(3) primary key,
+  4    Dname varchar2(20),
+  5    Location varchar2(20)
+  6  );
+
+Table created.
+
+SQL> create table Faculty_61
+  2  (
+  3   Facultyid varchar2(5) primary key,
+  4   Fname varchar2(15) NOT NULL CHECK(Fname=UPPER(Fname)),
+  5   Classroom_no number(8),
+  6   Designation varchar2(20),
+  7   Deptno number(3) REFERENCES Department_61(deptno),
+  8   Sal number(10)
+  9  );
+
+Table created.
+
+SQL> create table Student_61
+  2  (
+  3   Studentid number(3),
+  4   Sname varchar2(15) NOT NULL,
+  5   Birthdate Date,
+  6   Facultyid varchar2(5) REFERENCES Faculty_61(Facultyid),
+  7   City varchar2(20)
+  8  );
+
+Table created.
+
+SQL> insert into Department_61 values(&deptno,'&Dname','&Location');
+Enter value for deptno: 20
+Enter value for dname: Computer
+Enter value for location: Atmiya
+old   1: insert into Department_61 values(&deptno,'&Dname','&Location')
+new   1: insert into Department_61 values(20,'Computer','Atmiya')
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 30
+Enter value for dname: Accounting
+Enter value for location: Virani
+old   1: insert into Department_61 values(&deptno,'&Dname','&Location')
+new   1: insert into Department_61 values(30,'Accounting','Virani')
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 40
+Enter value for dname: Operations
+Enter value for location: Atmiya
+old   1: insert into Department_61 values(&deptno,'&Dname','&Location')
+new   1: insert into Department_61 values(40,'Operations','Atmiya')
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 50
+Enter value for dname: Electric
+Enter value for location: Atmiya
+old   1: insert into Department_61 values(&deptno,'&Dname','&Location')
+new   1: insert into Department_61 values(50,'Electric','Atmiya')
+
+1 row created.
+
+SQL> select * from Department_61;
+
+    DEPTNO DNAME                LOCATION                                        
+---------- -------------------- --------------------                            
+        20 Computer             Atmiya                                          
+        30 Accounting           Virani                                          
+        40 Operations           Atmiya                                          
+        50 Electric             Atmiya                                          
+
+SQL> desc Department_61;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(3)
+ DNAME                                              VARCHAR2(20)
+ LOCATION                                           VARCHAR2(20)
+
+
+SQL> insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal);
+Enter value for facultyid: F10
+Enter value for fname: SMITH
+Enter value for classrom_no: 101
+Enter value for designation: Lecturer
+Enter value for deptno: 30
+Enter value for sal: 38000
+old   1: insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal)
+new   1: insert into Faculty_61 values('F10','SMITH',101,'Lecturer',30,38000)
+
+1 row created.
+
+SQL> /
+Enter value for facultyid: F11
+Enter value for fname: ALLEN
+Enter value for classrom_no: 102
+Enter value for designation: Programmer
+Enter value for deptno: 20
+Enter value for sal: 35000
+old   1: insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal)
+new   1: insert into Faculty_61 values('F11','ALLEN',102,'Programmer',20,35000)
+
+1 row created.
+
+SQL> /
+Enter value for facultyid: F12
+Enter value for fname: WARD
+Enter value for classrom_no: 103
+Enter value for designation: Accountant
+Enter value for deptno: 20
+Enter value for sal: 32000
+old   1: insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal)
+new   1: insert into Faculty_61 values('F12','WARD',103,'Accountant',20,32000)
+
+1 row created.
+
+SQL> /
+Enter value for facultyid: F13
+Enter value for fname: MARTIN
+Enter value for classrom_no: 104
+Enter value for designation: Programmer
+Enter value for deptno: 30
+Enter value for sal: 30000
+old   1: insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal)
+new   1: insert into Faculty_61 values('F13','MARTIN',104,'Programmer',30,30000)
+
+1 row created.
+
+SQL> /
+Enter value for facultyid: F14
+Enter value for fname: SCOTT
+Enter value for classrom_no: 105
+Enter value for designation: Lecturer
+Enter value for deptno: 40
+Enter value for sal: 36000
+old   1: insert into Faculty_61 values('&Facultyid','&Fname',&Classrom_no,'&Designation',&deptno,&Sal)
+new   1: insert into Faculty_61 values('F14','SCOTT',105,'Lecturer',40,36000)
+
+1 row created.
+
+SQL> select * from Faculty_61;
+
+FACUL FNAME           CLASSROOM_NO DESIGNATION              DEPTNO        SAL   
+----- --------------- ------------ -------------------- ---------- ----------   
+F10   SMITH                    101 Lecturer                     30      38000   
+F11   ALLEN                    102 Programmer                   20      35000   
+F12   WARD                     103 Accountant                   20      32000   
+F13   MARTIN                   104 Programmer                   30      30000   
+F14   SCOTT                    105 Lecturer                     40      36000   
+
+SQL> desc Faculty_61;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FACULTYID                                 NOT NULL VARCHAR2(5)
+ FNAME                                     NOT NULL VARCHAR2(15)
+ CLASSROOM_NO                                       NUMBER(8)
+ DESIGNATION                                        VARCHAR2(20)
+ DEPTNO                                             NUMBER(3)
+ SAL                                                NUMBER(10)
+
+SQL> insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City');
+Enter value for studentid: 1
+Enter value for sname: Peter
+Enter value for birthdate: 03-apr-1996
+Enter value for facultyid: F10
+Enter value for city: Newyork
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(1,'Peter','03-apr-1996','F10','Newyork')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 2
+Enter value for sname: John
+Enter value for birthdate: 22-jun-1996
+Enter value for facultyid: F11
+Enter value for city: Boston
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(2,'John','22-jun-1996','F11','Boston')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 3
+Enter value for sname: Kevin
+Enter value for birthdate: 25-mar-1995
+Enter value for facultyid: F10
+Enter value for city: Newyork
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(3,'Kevin','25-mar-1995','F10','Newyork')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 4
+Enter value for sname: Ivan
+Enter value for birthdate: 04-may-1995
+Enter value for facultyid: F14
+Enter value for city: Newyork
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(4,'Ivan','04-may-1995','F14','Newyork')
+
+1 row created.                     
+
+SQL> /
+Enter value for studentid: 5
+Enter value for sname: King
+Enter value for birthdate: 17-feb-1996
+Enter value for facultyid: F11
+Enter value for city: Boston
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(5,'King','17-feb-1996','F11','Boston')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 6
+Enter value for sname: Miller
+Enter value for birthdate: 10-apr-1994
+Enter value for facultyid: F12
+Enter value for city: Germany
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(6,'Miller','10-apr-1994','F12','Germany')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 7
+Enter value for sname: Clark
+Enter value for birthdate: 15-aug-1994
+Enter value for facultyid: F12
+Enter value for city: Boston
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(7,'Clark','15-aug-1994','F12','Boston')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 8
+Enter value for sname: Adams
+Enter value for birthdate: 28-feb-1994
+Enter value for facultyid: F10
+Enter value for city: Germany
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(8,'Adams','28-feb-1994','F10','Germany')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 9
+Enter value for sname: Balke
+Enter value for birthdate: 06-jan-1995
+Enter value for facultyid: F14
+Enter value for city: Germany
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(9,'Balke','06-jan-1995','F14','Germany')
+
+1 row created.
+
+SQL> /
+Enter value for studentid: 10
+Enter value for sname: Turner
+Enter value for birthdate: 03-jun-1995
+Enter value for facultyid: F10
+Enter value for city: Boston
+old   1: insert into Student_61 values(&Studentid,'&Sname','&Birthdate','&Facultyid','&City')
+new   1: insert into Student_61 values(10,'Turner','03-jun-1995','F10','Boston')
+
+1 row created.
+
+SQL> desc Student_61;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                          NUMBER(3)
+ SNAME                                     NOT NULL VARCHAR2(15)
+ BIRTHDATE                                          DATE
+ FACULTYID                                          VARCHAR2(5)
+ CITY                                               VARCHAR2(20)
+
+SQL> select * from Student_61;
+
+ STUDENTID SNAME           BIRTHDATE FACUL CITY                                 
+---------- --------------- --------- ----- --------------------                 
+         1 Peter           03-APR-96 F10   Newyork                              
+         2 John            22-JUN-96 F11   Boston                               
+         3 Kevin           25-MAR-95 F10   Newyork                              
+         4 Ivan            04-MAY-95 F14   Newyork                              
+         5 King            17-FEB-96 F11   Boston                               
+         6 Miller          10-APR-94 F12   Germany                              
+         7 Clark           15-AUG-94 F12   Boston                               
+         8 Adams           28-FEB-94 F10   Germany                              
+         9 Balke           06-JAN-95 F14   Germany                              
+        10 Turner          03-JUN-95 F10   Boston                               
+
+10 rows selected.
+
+SQL> Select Fname from Faculty_61 WHERE(Deptno=20);
+
+FNAME                                                                           
+---------------                                                                 
+ALLEN                                                                           
+WARD                                                                            
+
+SQL> Select Sname from Student_61 WHERE Sname like'K%';
+
+SNAME                                                                           
+---------------                                                                 
+Kevin                                                                           
+King                                                                            
+
+SQL> select Fname,Sal from Faculty_61 Where (Sal>32000);
+
+FNAME                  SAL                                                      
+--------------- ----------                                                      
+SMITH                38000                                                      
+ALLEN                35000                                                      
+SCOTT                36000                                                      
+
+SQL> select * from Faculty_61 Where (Classroom_no = 102 || 103 || 105);
+
+no rows selected
+
+SQL> select * from Faculty_61 Where (Classroom_no = 102 OR Classroom_no =103 OR Classroom_no =105);
+
+FACUL FNAME           CLASSROOM_NO DESIGNATION              DEPTNO        SAL   
+----- --------------- ------------ -------------------- ---------- ----------   
+F11   ALLEN                    102 Programmer                   20      35000   
+F12   WARD                     103 Accountant                   20      32000   
+F14   SCOTT                    105 Lecturer                     40      36000   
+
+SQL> select * from Department_61 WHERE Dname NOT LIKE 'Operations';
+
+    DEPTNO DNAME                LOCATION                                        
+---------- -------------------- --------------------                            
+        20 Computer             Atmiya                                          
+        30 Accounting           Virani                                          
+        50 Electric             Atmiya                                          
+
+SQL> select Fname,Sal from Faculty_61 Where Sal IS NULL;
+
+no rows selected
+
+SQL> select Dname from Department_61 WHERE Deptno BETWEEN 30 AND 50;
+
+DNAME                                                                           
+--------------------                                                            
+Accounting                                                                      
+Operations                                                                      
+Electric                                                                        
+
+SQL> Select Sal+1000 from Faculty_61 WHERE Deptno=20;
+
+  SAL+1000                                                                      
+----------                                                                      
+     36000                                                                      
+     33000                                                                      
+
+SQL> select Distinct Designation From Faculty_61;
+
+DESIGNATION                                                                     
+--------------------                                                            
+Programmer                                                                      
+Lecturer                                                                        
+Accountant                                                                      
+
+SQL> select count(Distinct Designation) From Faculty_61;
+
+COUNT(DISTINCTDESIGNATION)                                                      
+--------------------------                                                      
+                         3                                                      
+
+SQL> ALTER table Faculty_61 ADD(City varchar2(20));
+
+Table altered.
+
+SQL> select * from Faculty_61;
+
+FACUL FNAME           CLASSROOM_NO DESIGNATION              DEPTNO        SAL   
+----- --------------- ------------ -------------------- ---------- ----------   
+CITY                                                                            
+--------------------                                                            
+F10   SMITH                    101 Lecturer                     30      38000   
+                                                                                
+                                                                                
+F11   ALLEN                    102 Programmer                   20      35000   
+                                                                                
+                                                                                
+F12   WARD                     103 Accountant                   20      32000   
+                                                                                
+                                                                                
+
+FACUL FNAME           CLASSROOM_NO DESIGNATION              DEPTNO        SAL   
+----- --------------- ------------ -------------------- ---------- ----------   
+CITY                                                                            
+--------------------                                                            
+F13   MARTIN                   104 Programmer                   30      30000   
+                                                                                
+                                                                                
+F14   SCOTT                    105 Lecturer                     40      36000   
+                                                                                
+                                                                                
+
+SQL> select * from Department_61;
+
+    DEPTNO DNAME                LOCATION                                        
+---------- -------------------- --------------------                            
+        20 Computer             Atmiya                                          
+        30 Accounting           Virani                                          
+        40 Operations           Atmiya                                          
+        50 Electric             Atmiya                                          
+
+SQL> UPDATE Department_61 SET Location='Atmiya' WHERE Location='Virani';
+
+1 row updated.
+
+SQL> select * from Department_61;
+
+    DEPTNO DNAME                LOCATION                                        
+---------- -------------------- --------------------                            
+        20 Computer             Atmiya                                          
+        30 Accounting           Atmiya                                          
+        40 Operations           Atmiya                                          
+        50 Electric             Atmiya                                          
+
+SQL> spool off;
