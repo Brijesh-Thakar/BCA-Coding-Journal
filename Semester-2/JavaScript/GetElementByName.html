@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>
+        JS-getElementsByName.com
+    </title>
+</head>
+<body>
+    <input type="checkbox" id="c1" value="Box-1" name="Ch" />CHBOX-1<br>
+    <input type="checkbox" id="c2" value="Box-2" name="Ch" />CHBOX-2<br>
+    <input type="checkbox" id="c3" value="Box-3" name="Ch" />CHBOX-3<br>
+    <input type="checkbox" id="c4" value="Box-4" name="Ch" />CHBOX-4<br>
+    
+    <input type="button" id="b1" value="Choices" onclick="Choice();" /><br>
+    <script>
+        function Choice()
+        {
+        var i;
+        var a=document.getElementsByName("Ch");
+        var b="";
+          for(i=0;i<4;i++)
+          {
+            if(a[i].checked==true)
+            {
+                b=b+a[i].value;
+            }
+                alert(b);
+          }
+        }
+    </script>
+</body>
+</html>

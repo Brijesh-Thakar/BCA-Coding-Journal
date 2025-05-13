@@ -1,0 +1,58 @@
+<html>
+    <head>
+    </head>
+        <body>           
+            <input type="button" name="b1" id="b1" value="+" onclick="add();"/>
+            <br>
+            <input type="button" name="b2" id="b2" value="-" onclick="sub();"/>
+            <br>            
+            <input type="button" name="b3" id="b3" value="*" onclick="multi();"/>
+            <br>            
+            <input type="button" name="b4" id="b4" value="/" onclick="divi();"/>
+            <br>
+            <input type="button" name="b5" id="b5" value="n*2" onclick="sqrt();"/>
+            <br>
+            <input type="button" name="b6" id="b6" value="n*3" onclick="cbrt();"/>
+            
+            <script>
+            var a=parseInt(prompt("Enter Value For A:"));
+            var b=parseInt(prompt("Enter Value For B:"));
+            
+            function add()
+            {
+                var c=a+b;
+                alert("Addition:"+c);
+            }
+            function sub()
+            {
+                var c=a-b;
+                alert("Substraction:"+c);
+            }
+            function multi()
+            {
+                var c=a*b;
+                alert("Multiplication:"+c);
+            } 
+            function divi()
+            {
+                var c=a/b;
+                alert("Division:"+c);
+            }
+            function sqrt()
+            {
+                var c=a*a;
+                alert("Square root Of A:"+c);
+                var c=b*b;
+                alert("Square root Of B:"+c);
+            }
+            
+            function cbrt()
+            {
+                var c=a*a*a;
+                alert("Cube root Of A:"+c);
+                var c=b*b*b;
+                alert("Cube root Of B:"+c);
+            }
+            </script>
+        </body>
+</html>

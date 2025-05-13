@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>
+        JS-getElementsByName.com
+    </title>
+</head>
+<body>
+    <input type="radio" id="r1" value="Rad-1" name="Ch" />BTN-1<br>
+    <input type="radio" id="r2" value="Rad-2" name="Ch" />BTN-2<br>
+    <input type="button" id="b1" value="Choices" onclick="Choice();" /><br>
+    <script>
+        function Choice()
+        {
+        var i;
+        var a=document.getElementsByName("Ch");
+        var b="";
+          for(i=0;i<2;i++)
+          {
+            if(a[i].checked==true)
+            {
+                b=b+a[i].value;
+            }
+                alert(b);
+          }
+        }
+    </script>
+</body>
+</html>

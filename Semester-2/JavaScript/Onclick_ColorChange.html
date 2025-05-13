@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Gradient OnClick With Java Script.Com</title>
+</head>
+<body>
+    <button type="button" onclick="changecolor('cyan', '#DE7E5D')">Gradient</button>
+    <button type="button" onclick="changecolor('cyan', 'blue')">Gradient-1</button>
+    <button type="button" onclick="changecolor('blue', 'purple')">Gradient-2</button>
+    <button type="button" onclick="changecolor('black', 'purple')">Gradient-3</button>
+    <button type="button" onclick="changecolor('#323232', '#0D7377')">Gradient-4</button>
+    <button type="button" onclick="changecolor('#AD88C6', '#7469B6')">Gradient-5</button>
+    <button type="button" onclick="changecolor('#90EE90', '#228B22')">Gradient-6</button>
+    <button type="button" onclick="changecolor('#FFD700', '#FF4500')">Gradient-7</button>
+    <button type="button" onclick="changecolor('#FFDAB9', '#FF1493')">Gradient-8</button>
+<script>
+    function changecolor(nme,nme2)
+    {
+        document.body.style.background=`linear-gradient( ${nme},${nme2})`;
+    }
+</script>
+</body>
+</html>
